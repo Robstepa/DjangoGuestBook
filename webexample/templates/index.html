@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Guest Book</title>
+        <link rel="stylesheet" href="{% static "css/style.css" %}" type="text/css" />
+    </head>
+    <body>
+        <h1>GuestBook</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Name" name="name"><br/><br/>
+            <textarea placeholder="Comment" name="comment"></textarea><br/><br/>
+            <input type="submit" value="Send">
+        </form>
+        {% for comment in comments %}
+            <b>Name: {{ comment.name }}</b>
+            <p>Comment: {{ comment.comment }}</p><br/><br/>
+        {% endfor %}
+    </body>
+</html>
